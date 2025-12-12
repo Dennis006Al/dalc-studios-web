@@ -1,0 +1,131 @@
+---
+import { AuroraText } from "@/components/ui/aurora-text";
+import { RainbowButton } from "@/components/ui/rainbow-button";
+import { Menu } from "lucide-react";
+
+const navLinks = [
+  { name: "Servicios", id: "services" },
+  { name: "Precios", id: "pricing" },
+];
+---
+
+<nav
+  class="fixed top-0 inset-x-0 z-[9999]
+  bg-gradient-to-br from-[#0a0f1f] via-[#0f1a2f] to-[#0c1024]
+  border-b border-white/10 text-white shadow-lg"
+>
+  <div
+    class="
+      max-w-7xl mx-auto
+      px-4 sm:px-6
+      py-4
+      flex items-center justify-between
+      overflow-x-hidden
+    "
+  >
+    <!-- LOGO -->
+    <a
+      href="/"
+      class="
+        flex items-center gap-2
+        max-w-[70%] sm:max-w-none
+        truncate
+      "
+    >
+      <span class="font-semibold tracking-wide text-sm sm:text-base lg:text-2xl whitespace-nowrap">
+        &lt;/ DALC
+        <AuroraText
+          client:only="react"
+          className="inline lg:text-2xl font-semibold tracking-wide"
+          colors={["#3b82f6", "#60a5fa", "#93c5fd", "#bfdbfe"]}
+        >
+          STUDIOS
+        </AuroraText>
+        &gt;
+      </span>
+    </a>
+
+    <!-- DESKTOP / TABLET NAV -->
+    <div class="hidden md:flex items-center gap-8">
+      {
+        navLinks.map((link) => (
+          <a
+            data-scroll={link.id}
+            class="text-md text-gray-300 hover:text-white font-bold cursor-pointer"
+          >
+            {link.name}
+          </a>
+        ))
+      }
+
+      <!-- CTA -->
+      <a data-scroll="contact" class="cursor-pointer">
+        <RainbowButton>Solicitar Cotización</RainbowButton>
+      </a>
+    </div>
+
+    <!-- MOBILE BUTTON -->
+    <button
+      id="menu-btn"
+      class="
+        md:hidden
+        flex items-center justify-center
+        rounded-xl border border-white/10
+        bg-white/5 p-2
+        transition hover:bg-white/10
+      "
+      aria-label="Abrir menú"
+    >
+      <Menu size={22} />
+    </button>
+  </div>
+
+  <!-- MOBILE MENU -->
+  <div
+    id="mobile-menu"
+    class="
+      hidden md:hidden
+      inset-x-0
+      border-t border-white/10
+      bg-gradient-to-b from-[#0a0f1f] to-[#0c1024]
+    "
+  >
+    <div class="px-6 py-6 flex flex-col gap-5">
+      {
+        navLinks.map((link) => (
+          <a
+            data-scroll={link.id}
+            class="text-lg text-gray-300 hover:text-white font-bold cursor-pointer"
+          >
+            {link.name}
+          </a>
+        ))
+      }
+
+      <a
+        data-scroll="contact"
+        class="text-lg text-gray-300 hover:text-white font-bold cursor-pointer"
+      >
+        Solicitar Cotización
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Spacer -->
+<div class="h-[80px]"></div>
+
+<script is:inline>
+  const btn = document.getElementById("menu-btn");
+  const menu = document.getElementById("mobile-menu");
+
+  btn?.addEventListener("click", () => {
+    menu.classList.toggle("hidden");
+  });
+
+  document.addEventListener("click", (e) => {
+    if (e.target.closest("[data-scroll]")) {
+      menu.classList.add("hidden");
+    }
+  });
+</script>

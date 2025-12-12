@@ -1,0 +1,535 @@
+---
+import { AuroraText } from "@/components/ui/aurora-text";
+import { TextAnimate } from "@/components/ui/text-animate";
+import { SparklesText } from "@/components/ui/sparkles-text";
+import {
+  Facebook,
+  Linkedin,
+  Instagram,
+  CircleCheck,
+  SquareCheck,
+  Mail,
+  MessageSquare,
+  Clock,
+  Zap,
+  TrendingUp,
+  Shield
+} from "lucide-react";
+
+const contactEmail = "dalcstudios.sv@gmail.com";
+
+const serviceOptions = [
+  "Landing Page Profesional",
+  "Sitio Web Profesional (3–5 páginas)",
+  "Sitio Web Catálogo / Tienda",
+  "Mantenimiento Web Mensual",
+  "Optimización Web",
+  "Rediseño Web",
+  "Consultoría SEO",
+];
+---
+
+<section
+  aria-labelledby="contact-heading"
+  class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20 text-white"
+  itemscope
+  itemtype="https://schema.org/ContactPage"
+>
+  <!-- BACKGROUND ELEMENTS -->
+  <div class="absolute inset-0 -z-10 overflow-hidden">
+    <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-600/10 rounded-full blur-3xl"></div>
+  </div>
+
+  <!-- HEADER -->
+  <header id="contact" class="mx-auto mb-12 sm:mb-16 max-w-3xl text-center">
+    <TextAnimate client:only="react" animation="blurInUp" delay={0.1}>
+      <AuroraText
+        client:only="react"
+        className="mb-3 text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight"
+        colors={["#3b82f6", "#60a5fa", "#93c5fd"]}
+      >
+        <meta itemprop="name" content="Contacto para Desarrollo Web Profesional" />
+        Hablemos de tu Proyecto Web
+      </AuroraText>
+    </TextAnimate>
+
+    <p class="text-base sm:text-lg text-gray-300 mt-2 mb-4">
+      Cuéntame qué necesitas y te responderé con una propuesta clara y optimizada para resultados.
+    </p>
+
+    <!-- BADGE SEO -->
+    <div class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-sm px-4 py-2 rounded-full border border-blue-500/30 mb-4">
+      <Zap size={14} className="text-blue-400" />
+      <span class="text-xs sm:text-sm font-medium text-blue-300">Respuesta en menos de 24 horas</span>
+    </div>
+  </header>
+
+  <!-- GRID RESPONSIVE -->
+  <div class="grid gap-8 md:gap-12 md:grid-cols-2 items-start">
+    <!-- LEFT COLUMN - OPTIMIZADA -->
+    <article class="space-y-6 md:space-y-8">
+      <div>
+        <h3 class="text-2xl sm:text-3xl font-bold mb-3">
+          ¿Listo para transformar tu presencia digital?
+        </h3>
+
+        <p class="text-gray-300 leading-relaxed mb-4">
+          Trabajo con negocios y profesionales que buscan un sitio web <strong class="text-blue-400">rápido, moderno y enfocado en resultados reales</strong> que mejoren su visibilidad en Google.
+        </p>
+
+        <!-- BENEFICIOS LLAMATIVOS -->
+        <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-5 border border-white/10 mb-4">
+          <h4 class="font-bold text-lg mb-3 flex items-center gap-2">
+            <TrendingUp size={20} className="text-green-400" />
+            Lo que obtienes al contactarme
+          </h4>
+          <ul class="space-y-3 text-sm text-gray-300">
+            {
+              [
+                "Asesoría SEO gratuita inicial",
+                "Propuesta clara y sin compromiso",
+                "Diseño enfocado en conversiones",
+                "Optimización para móviles (mobile-first)",
+                "Estrategia de posicionamiento web",
+                "Soporte técnico post-lanzamiento",
+              ].map((item) => (
+                <li class="flex items-start gap-2">
+                  <span class="text-green-400 mt-0.5"><CircleCheck /></span>
+                  <span>{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <!-- ESTADÍSTICAS DE CONFIANZA -->
+      <div class="grid grid-cols-2 gap-4">
+        <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 text-center border border-white/10">
+          <div class="text-2xl font-bold text-blue-400">24h</div>
+          <div class="text-xs text-gray-400 mt-1">Tiempo respuesta</div>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 text-center border border-white/10">
+          <div class="text-2xl font-bold text-green-400">90+</div>
+          <div class="text-xs text-gray-400 mt-1">Puntuación SEO</div>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 text-center border border-white/10">
+          <div class="text-2xl font-bold text-purple-400">100%</div>
+          <div class="text-xs text-gray-400 mt-1">Satisfacción</div>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 text-center border border-white/10">
+          <div class="text-2xl font-bold text-yellow-400">SEO</div>
+          <div class="text-xs text-gray-400 mt-1">Incluido</div>
+        </div>
+      </div>
+
+      <!-- CONTACT INFO -->
+      <div class="pt-4 border-t border-white/10">
+        <p class="mb-3 text-sm font-medium text-gray-400 flex items-center gap-2">
+          <Mail size={16} />
+          Contacto directo
+        </p>
+        <a 
+          href={`mailto:${contactEmail}?subject=Consulta%20desarrollo%20web`}
+          class="text-blue-400 hover:text-blue-300 font-medium text-lg inline-flex items-center gap-2 transition-colors"
+          aria-label="Enviar correo a dalcstudios.sv@gmail.com"
+        >
+          {contactEmail}
+        </a>
+
+        <!-- SOCIAL -->
+        <div class="mt-6">
+          <p class="mb-3 text-sm text-gray-400 flex items-center gap-2">
+            <MessageSquare size={16} />
+            También puedes contactarme aquí
+          </p>
+
+          <div class="flex items-center gap-3">
+            <a
+              href="https://linkedin.com/in/tu-usuario"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn - Perfil profesional"
+              class="flex h-12 w-12 items-center justify-center rounded-xl border border-blue-500/20 bg-blue-500/10 backdrop-blur transition-all hover:bg-blue-500/20 hover:scale-110 hover:shadow-lg hover:shadow-blue-500/25"
+            >
+              <Linkedin size={20} className="text-blue-400" />
+            </a>
+
+            <a
+              href="https://instagram.com/tu-usuario"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram - Proyectos recientes"
+              class="flex h-12 w-12 items-center justify-center rounded-xl border border-pink-500/20 bg-pink-500/10 backdrop-blur transition-all hover:bg-pink-500/20 hover:scale-110 hover:shadow-lg hover:shadow-pink-500/25"
+            >
+              <Instagram size={20} className="text-pink-400" />
+            </a>
+
+            <a
+              href="https://facebook.com/tu-usuario"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook - Página de servicios"
+              class="flex h-12 w-12 items-center justify-center rounded-xl border border-blue-400/20 bg-blue-400/10 backdrop-blur transition-all hover:bg-blue-400/20 hover:scale-110 hover:shadow-lg hover:shadow-blue-400/25"
+            >
+              <Facebook size={20} className="text-blue-300" />
+            </a>
+          </div>
+          <p class="text-xs text-gray-500 mt-2">Mira mis proyectos recientes y reseñas</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- FORM - OPTIMIZADO -->
+    <form
+      id="contact-form"
+      action={`https://formsubmit.co/${contactEmail}`}
+      method="POST"
+      class="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 sm:p-8 space-y-5 shadow-xl shadow-blue-500/5"
+      itemprop="mainEntity"
+      itemscope
+      itemtype="https://schema.org/ContactPoint"
+    >
+      <meta itemprop="email" content={contactEmail} />
+      <meta itemprop="contactType" content="customer service" />
+      
+      <!-- ENCABEZADO FORM -->
+      <div class="mb-4">
+        <h3 class="text-xl font-bold mb-2 flex items-center gap-2">
+          <SquareCheck className="text-blue-400" />
+          Solicita tu cotización
+        </h3>
+        <p class="text-sm text-gray-400">
+          Completa el formulario y recibe una propuesta personalizada en menos de 24 horas.
+        </p>
+      </div>
+
+      <!-- CONFIG -->
+      <input
+        type="hidden"
+        name="_subject"
+        value="🚀 Nueva solicitud de desarrollo web - Sitio DALC Studios"
+      />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_replyto" value="" />
+      <input type="text" name="_honey" style="display:none" />
+      <input type="hidden" name="_next" value="https://tusitio.com/gracias" />
+
+      <!-- NAME -->
+      <div>
+        <label for="name" class="block mb-2 text-sm font-medium">Nombre completo *</label>
+        <input
+          id="name"
+          name="name"
+          required
+          autocomplete="name"
+          placeholder="Ej: Juan Pérez"
+          class="w-full rounded-xl bg-black/30 border border-white/10 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+          itemprop="name"
+        />
+      </div>
+
+      <!-- EMAIL -->
+      <div>
+        <label for="email" class="block mb-2 text-sm font-medium">Correo electrónico *</label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          required
+          autocomplete="email"
+          placeholder="ejemplo@email.com"
+          class="w-full rounded-xl bg-black/30 border border-white/10 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+          itemprop="email"
+        />
+      </div>
+
+      <!-- PHONE (NUEVO CAMPO) -->
+      <div>
+        <label for="phone" class="block mb-2 text-sm font-medium">Teléfono (opcional)</label>
+        <input
+          id="phone"
+          type="tel"
+          name="phone"
+          autocomplete="tel"
+          placeholder="+503 1234 5678"
+          class="w-full rounded-xl bg-black/30 border border-white/10 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+          itemprop="telephone"
+        />
+      </div>
+
+      <!-- SERVICE -->
+      <div>
+        <label for="service" class="block mb-2 text-sm font-medium">
+          ¿Qué servicio te interesa? *
+        </label>
+        <select
+          id="service"
+          name="service"
+          required
+          class="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-gray-300 backdrop-blur transition-all focus:bg-black/40 focus:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        >
+          <option value="" class="bg-[#0b1020] text-gray-400">
+            — Selecciona un servicio —
+          </option>
+
+          {
+            serviceOptions.map((s) => (
+              <option value={s} class="bg-[#0b1020] text-white">
+                {s}
+              </option>
+            ))
+          }
+          <option value="Otro" class="bg-[#0b1020] text-white">
+            Otro (especificar en mensaje)
+          </option>
+        </select>
+      </div>
+
+      <!-- BUDGET (NUEVO CAMPO) -->
+      <div>
+        <label for="budget" class="block mb-2 text-sm font-medium">
+          Presupuesto aproximado (opcional)
+        </label>
+        <select
+          id="budget"
+          name="budget"
+          class="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-gray-300 backdrop-blur transition-all focus:bg-black/40 focus:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        >
+          <option value="" class="bg-[#0b1020] text-gray-400">— Selecciona rango —</option>
+          <option value="$250 - $500" class="bg-[#0b1020] text-white">$250 - $500</option>
+          <option value="$500 - $1,000" class="bg-[#0b1020] text-white">$500 - $1,000</option>
+          <option value="$1,000 - $2,500" class="bg-[#0b1020] text-white">$1,000 - $2,500</option>
+          <option value="$2,500+" class="bg-[#0b1020] text-white">$2,500+</option>
+          <option value="Por definir" class="bg-[#0b1020] text-white">Prefiero una cotización</option>
+        </select>
+      </div>
+
+      <!-- MESSAGE -->
+      <div>
+        <label for="message" class="block mb-2 text-sm font-medium">
+          Cuéntame sobre tu proyecto *
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          rows="4"
+          required
+          placeholder="Ej: Necesito un sitio web para mi restaurante con reservas online. Mi público objetivo es..."
+          class="w-full rounded-xl bg-black/30 border border-white/10 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+          itemprop="description"
+        ></textarea>
+        <p class="text-xs text-gray-500 mt-1">Mientras más detalles, mejor podré ayudarte</p>
+      </div>
+
+      <!-- SUBMIT -->
+      <button
+        id="submit-btn"
+        type="submit"
+        class="cursor-pointer w-full rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 py-3 text-sm font-semibold transition-all hover:from-blue-700 hover:to-purple-700 hover:scale-[1.02] hover:shadow-lg hover:shadow-blue-500/25 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
+        aria-label="Enviar formulario de contacto"
+      >
+        <span class="inline-flex items-center justify-center gap-2">
+          <Mail size={16} />
+          Enviar solicitud
+        </span>
+      </button>
+
+      <!-- PRIVACY -->
+      <div class="text-center">
+        <p class="text-xs text-gray-400">
+          <span class="inline-flex items-center gap-1">
+            <Shield size={12} className="text-green-400" />
+            100% confidencial · Sin spam · Respuesta garantizada
+          </span>
+        </p>
+      </div>
+    </form>
+  </div>
+
+  <!-- TOAST MEJORADO -->
+  <div
+    id="toast"
+    class="fixed bottom-6 right-6 z-50 hidden rounded-xl border bg-black/90 px-5 py-4 text-sm backdrop-blur-md shadow-xl max-w-sm"
+    role="alert"
+    aria-live="assertive"
+  >
+  </div>
+
+  <!-- SCRIPT MEJORADO -->
+  <script type="module">
+    const form = document.getElementById("contact-form");
+    const toast = document.getElementById("toast");
+    const select = document.getElementById("service");
+    const submitBtn = document.getElementById("submit-btn");
+
+    function showToast(message, success = true) {
+      toast.innerHTML = `
+        <div class="flex items-start gap-3">
+          ${
+            success
+              ? `
+          <div class="flex-shrink-0">
+            <div class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-400"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+          </div>`
+              : `
+          <div class="flex-shrink-0">
+            <div class="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-400"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </div>
+          </div>`
+          }
+          <div>
+            <p class="font-medium">${success ? '¡Mensaje enviado!' : 'Error'}</p>
+            <p class="text-gray-300 text-sm mt-1">${message}</p>
+          </div>
+        </div>
+      `;
+
+      toast.className = success
+        ? "fixed bottom-6 right-6 z-50 hidden rounded-xl border border-green-500/30 bg-black/90 px-5 py-4 text-sm backdrop-blur-md shadow-xl max-w-sm"
+        : "fixed bottom-6 right-6 z-50 hidden rounded-xl border border-red-500/30 bg-black/90 px-5 py-4 text-sm backdrop-blur-md shadow-xl max-w-sm";
+
+      toast.classList.remove("hidden");
+
+      // Sonido de éxito (opcional)
+      if (success && typeof window !== 'undefined') {
+        const audio = new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAZGF0YQQ=');
+        audio.volume = 0.3;
+        audio.play().catch(() => {});
+      }
+
+      setTimeout(() => {
+        toast.classList.add("hidden");
+      }, 5000);
+    }
+
+    function scrollToTop(delay = 600) {
+      setTimeout(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      }, delay);
+    }
+
+    // Event listener para selección de servicio desde otras secciones
+    window.addEventListener("select-service", (e) => {
+      const serviceName = e.detail?.service;
+      if (!serviceName || !select) return;
+
+      const exists = [...select.options].some((o) => o.value === serviceName);
+
+      if (!exists && serviceName.trim() !== "") {
+        const opt = document.createElement("option");
+        opt.value = serviceName;
+        opt.textContent = serviceName;
+        opt.className = "bg-[#0b1020] text-white";
+        select.appendChild(opt);
+      }
+
+      if (serviceName.trim() !== "") {
+        select.value = serviceName;
+      }
+
+      // Scroll suave al formulario
+      setTimeout(() => {
+        form.scrollIntoView({ 
+          behavior: "smooth", 
+          block: "center" 
+        });
+        
+        // Efecto visual de destacado
+        form.classList.add("ring-2", "ring-blue-400", "ring-opacity-50");
+        setTimeout(() => {
+          form.classList.remove("ring-2", "ring-blue-400", "ring-opacity-50");
+        }, 1500);
+      }, 100);
+    });
+
+    // Validación en tiempo real
+    form.addEventListener("input", (e) => {
+      if (e.target.required && e.target.value.trim() !== "") {
+        e.target.classList.add("border-blue-500/50");
+        e.target.classList.remove("border-red-500/50");
+      }
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // Validación básica
+      const requiredFields = form.querySelectorAll("[required]");
+      let isValid = true;
+      
+      requiredFields.forEach(field => {
+        if (!field.value.trim()) {
+          field.classList.add("border-red-500/50");
+          isValid = false;
+        }
+      });
+
+      if (!isValid) {
+        showToast("Por favor, completa todos los campos requeridos", false);
+        return;
+      }
+
+      // Animación de carga
+      submitBtn.disabled = true;
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = `
+        <span class="inline-flex items-center justify-center gap-2">
+          <div class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+          Enviando...
+        </span>
+      `;
+
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { 
+            "Accept": "application/json",
+            "X-Requested-With": "XMLHttpRequest"
+          },
+        });
+
+        if (res.ok) {
+          showToast("¡Perfecto! Te contactaré en menos de 24 horas. Revisa tu correo.");
+          scrollToTop();
+          form.reset();
+          
+          // Evento para Google Analytics (si lo tienes)
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'form_submit', {
+              'event_category': 'Contact',
+              'event_label': 'Contact Form'
+            });
+          }
+        } else {
+          showToast("Hubo un error al enviar. Por favor, inténtalo de nuevo o contáctame directamente por email.", false);
+        }
+      } catch (error) {
+        console.error('Form submission error:', error);
+        showToast("Error de conexión. Por favor, inténtalo de nuevo o envíame un correo directamente.", false);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }
+    });
+
+    // Focus en primer campo al cargar
+    window.addEventListener('load', () => {
+      const firstInput = form.querySelector('input, textarea, select');
+      if (firstInput) {
+        setTimeout(() => {
+          firstInput.focus();
+        }, 500);
+      }
+    });
+  </script>
+</section>

@@ -1,0 +1,80 @@
+---
+import { TextAnimate } from "@/components/ui/text-animate";
+import { AuroraText } from "@/components/ui/aurora-text";
+import { ShimmerButton } from "@/components/ui/shimmer-button";
+import { RainbowButton } from "@/components/ui/rainbow-button";
+import { ArrowRight, Earth } from "lucide-react";
+---
+
+<section
+  id="hero"
+  aria-labelledby="hero-heading"
+  class="relative min-h-[85svh] flex items-center justify-center text-white pt-8 md:pt-8"
+>
+  <div class="relative mx-auto w-full max-w-5xl px-4 sm:px-6 text-center flex flex-col gap-6 sm:gap-8">
+
+    <!-- LOCATION BADGE -->
+    <TextAnimate client:only="react" animation="blurInUp" delay={0.05}>
+      <ShimmerButton
+        aria-hidden="true"
+        className="mx-auto inline-flex items-center gap-2 px-4 py-1 text-xs sm:text-sm font-extrabold cursor-default"
+      >
+        <Earth size={18} />
+        Diseño Web en El Salvador
+      </ShimmerButton>
+    </TextAnimate>
+
+    <!-- H1 -->
+    <TextAnimate client:only="react" animation="blurInUp" delay={0.15}>
+      <h1
+        id="hero-heading"
+        class="mx-auto max-w-4xl text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight"
+      >
+        Diseño Web Profesional para Empresas que quieren
+        <span class="block">
+          <AuroraText
+            client:only="react"
+            className="block"
+            colors={["#3b82f6", "#60a5fa", "#93c5fd", "#bfdbfe"]}
+          >
+            Más Clientes y Más Ventas
+          </AuroraText>
+        </span>
+      </h1>
+    </TextAnimate>
+
+    <!-- DESCRIPTION -->
+    <TextAnimate client:only="react" animation="blurInUp" delay={0.25}>
+      <p class="mx-auto max-w-2xl text-base sm:text-lg text-gray-300 leading-relaxed">
+        Creamos <strong>landing pages modernas, rápidas y optimizadas para SEO</strong>
+        que posicionan en Google, transmiten confianza y convierten visitas en clientes.
+        Especialistas en diseño web estratégico para negocios en El Salvador.
+      </p>
+    </TextAnimate>
+
+    <!-- CTA -->
+    <div class="pt-4 flex flex-col sm:flex-row justify-center items-center gap-4">
+      <TextAnimate client:only="react" animation="blurInUp" delay={0.35}>
+        <a data-scroll="contact" class="w-full sm:w-auto group">
+          <RainbowButton
+            size="hero"
+            className="w-full sm:w-auto transition-transform duration-300 hover:scale-105"
+          >
+            Consultoría Gratuita
+          </RainbowButton>
+        </a>
+      </TextAnimate>
+
+      <TextAnimate client:only="react" animation="blurInUp" delay={0.45}>
+        <a
+          data-scroll="services"
+          class="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/10 border border-white/20 text-sm font-semibold transition-all hover:bg-white/20 hover:scale-105 cursor-pointer"
+        >
+          Ver Servicios
+          <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+        </a>
+      </TextAnimate>
+    </div>
+
+  </div>
+</section>

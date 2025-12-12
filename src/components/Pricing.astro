@@ -1,0 +1,152 @@
+---
+import ServiceCardShine from "../components/ui/ServiceCardShine";
+import { AuroraText } from "@/components/ui/aurora-text";
+import { TypingAnimation } from "@/components/ui/typing-animation";
+import { TextAnimate } from "@/components/ui/text-animate";
+
+const hostingNote =
+  "Webs Incluye hosting + dominio por 1 año sujeto a disponibilidad.";
+---
+
+<section
+  aria-labelledby="pricing-heading"
+  class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 md:pt-16 text-white"
+>
+  <!-- ================= -->
+  <!--      HEADER       -->
+  <!-- ================= -->
+  <header
+    id="pricing"
+    class="mx-auto mb-12 sm:mb-16 max-w-3xl text-center flex flex-col gap-4"
+  >
+    <TextAnimate client:only="react" animation="blurInUp" delay={0.1}>
+      <AuroraText
+        client:only="react"
+        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-3 sm:mb-4"
+        colors={["#3b82f6", "#60a5fa", "#93c5fd", "#bfdbfe"]}
+      >
+        Precios y planes
+      </AuroraText>
+    </TextAnimate>
+
+    <TypingAnimation
+      client:only="react"
+      words={[
+        "Planes claros, escalables y pensados para convertir visitas en clientes.",
+      ]}
+      loop={false}
+      duration={50}
+      className="text-base md:text-base lg:text-lg text-gray-300"
+      showCursor
+    />
+  </header>
+
+  <!-- =========================== -->
+  <!--    PLANES / GRID            -->
+  <!-- =========================== -->
+  <section id="web-design">
+    <div
+      class="grid grid-cols-1 gap-6
+        md:grid-cols-2 md:gap-6
+        lg:grid-cols-3 lg:gap-8
+        xl:grid-cols-[1.5fr_1fr_1fr_1fr] xl:gap-8"
+    >
+      <!-- CARD GRANDE IZQUIERDA -->
+      <div class="md:col-span-2 lg:col-span-3 xl:col-span-1 xl:row-span-2">
+        <ServiceCardShine
+          client:visible
+          hideIcon
+          title="Sitio Web Profesional (3–5 páginas)"
+          description="Ideal para negocios que buscan presencia sólida, autoridad y posicionamiento en Google."
+          prices={["Desde $400"]}
+          plans={[
+            {
+              name: "Incluye",
+              benefits: [
+                "Diseño UI/UX personalizado",
+                "Estructura profesional de 3 a 5 páginas",
+                "SEO optimizado por página",
+                "Arquitectura web preparada para escalar",
+                "Mayor visibilidad en Google",
+                "Velocidad de carga 90+ Lighthouse",
+                "Optimización para dispositivos móviles",
+                "Integración de WhatsApp y formularios",
+                "Mayor confianza y credibilidad de marca",
+                "Base sólida para crecimiento digital",
+                "Google Analytics y Search Console",
+              ],
+            },
+          ]}
+          cta="Elegir este Plan"
+          defaultOpenPlans={[0]}
+        />
+      </div>
+
+      <!-- CARD LANDING (HORIZONTAL SOLO EN XL) -->
+      <div class="md:col-span-2 lg:col-span-3 xl:col-span-3">
+        <ServiceCardShine
+          client:visible
+          featured
+          hideIcon
+          title="Landing Page Profesionales"
+          description="La opción más solicitada para campañas, ventas rápidas y servicios específicos."
+          prices={["Desde $250"]}
+          plans={[
+            {
+              name: "Incluye esta Landing",
+              benefits: [
+                "Diseño enfocado en conversión",
+                "Landing optimizada (Hero + CTA)",
+                "Carga rápida y adaptada a móviles",
+                "Formulario o botón de WhatsApp",
+              ],
+            },
+          ]}
+          cta="Quiero esta Landing"
+        />
+      </div>
+
+      <!-- CARDS PEQUEÑAS MÁS ANCHAS -->
+      <!-- Contenedor para las 3 cards -->
+      <div class="md:col-span-2 lg:col-span-3 xl:col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">
+        <div>
+          <ServiceCardShine
+            client:visible
+            hideIcon
+            title="Web Catálogo / Tienda"
+            description="Perfecto para mostrar múltiples servicios o productos."
+            prices={["Desde $699"]}
+            cta="Solicitar Cotización"
+          />
+        </div>
+
+        <div>
+          <ServiceCardShine
+            client:visible
+            hideIcon
+            title="Mantenimiento Web"
+            description="Mantenimiento, seguridad y optimización continua para tu sitio."
+            prices={["Desde $25 / mes"]}
+            cta="Contratar Soporte"
+          />
+        </div>
+
+        <div>
+          <ServiceCardShine
+            client:visible
+            hideIcon
+            title="Optimizaciones Web"
+            description="Mejora continua para velocidad, SEO, conversión y rendimiento general."
+            prices={["Desde $49.99"]}
+            cta="Optimizar mi Sitio"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTA HOSTING -->
+    <p class="mt-6 text-sm text-gray-400 text-center">
+      {hostingNote}
+    </p>
+  </section>
+</section>
