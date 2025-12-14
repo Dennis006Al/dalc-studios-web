@@ -3,48 +3,230 @@ import ServiceCardShine from "../components/ui/ServiceCardShine";
 import { AuroraText } from "@/components/ui/aurora-text";
 import { TypingAnimation } from "@/components/ui/typing-animation";
 import { TextAnimate } from "@/components/ui/text-animate";
+import { CircleCheck, Star, ChevronDown, ChevronUp } from "lucide-react";
 
-const hostingNote =
-  "Webs Incluye hosting + dominio por 1 año sujeto a disponibilidad.";
+const hostingNote = "Webs Incluye hosting + dominio por 1 año sujeto a disponibilidad.";
 ---
 
 <section
   aria-labelledby="pricing-heading"
-  class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 md:pt-16 text-white"
+  class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8 md:pt-12 text-white"
 >
   <!-- ================= -->
   <!--      HEADER       -->
   <!-- ================= -->
   <header
     id="pricing"
-    class="mx-auto mb-12 sm:mb-16 max-w-3xl text-center flex flex-col gap-4"
+    class="mx-auto mb-8 sm:mb-12 max-w-3xl text-center"
   >
-    <TextAnimate client:only="react" animation="blurInUp" delay={0.1}>
+    <!-- Versión Mobile: Solo AuroraText -->
+    <div class="md:hidden">
       <AuroraText
         client:only="react"
-        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-3 sm:mb-4"
+        className="text-3xl sm:text-4xl font-extrabold leading-tight mb-3"
         colors={["#3b82f6", "#60a5fa", "#93c5fd", "#bfdbfe"]}
       >
         Precios y planes
       </AuroraText>
-    </TextAnimate>
+    </div>
+    
+    <!-- Versión Desktop: Con animaciones -->
+    <div class="hidden md:block">
+      <TextAnimate client:only="react" animation="blurInUp" delay={0.1}>
+        <AuroraText
+          client:only="react"
+          className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-3 sm:mb-4"
+          colors={["#3b82f6", "#60a5fa", "#93c5fd", "#bfdbfe"]}
+        >
+          Precios y planes
+        </AuroraText>
+      </TextAnimate>
+    </div>
 
-    <TypingAnimation
-      client:only="react"
-      words={[
-        "Planes claros, escalables y pensados para convertir visitas en clientes.",
-      ]}
-      loop={false}
-      duration={50}
-      className="text-base md:text-base lg:text-lg text-gray-300"
-      showCursor
-    />
+    <!-- Mobile: Texto estático -->
+    <div class="md:hidden">
+      <p class="text-base text-gray-300 mt-2">
+        Planes claros, escalables y pensados para convertir visitas en clientes.
+      </p>
+    </div>
+    
+    <!-- Desktop: Con animación -->
+    <div class="hidden md:block">
+      <TypingAnimation
+        client:only="react"
+        words={[
+          "Planes claros, escalables y pensados para convertir visitas en clientes.",
+        ]}
+        loop={false}
+        duration={50}
+        className="text-base md:text-base lg:text-lg text-gray-300"
+        showCursor
+      />
+    </div>
   </header>
 
   <!-- =========================== -->
-  <!--    PLANES / GRID            -->
+  <!--    PLANES / GRID - MOBILE   -->
   <!-- =========================== -->
-  <section id="web-design">
+  <!-- VERSIÓN MOBILE: Cards estáticas sin JavaScript -->
+  <section id="web-design" class="md:hidden">
+    <div class="space-y-6">
+      <!-- Card 1: Sitio Web Profesional (Mobile) -->
+      <article class="rounded-2xl border border-blue-500/30 bg-gradient-to-br from-blue-600/10 via-blue-500/5 to-transparent backdrop-blur-sm p-6 relative shadow-lg shadow-blue-500/10">
+        <h3 class="text-xl font-bold mb-3 text-white">Sitio Web Profesional (3–5 páginas)</h3>
+        <p class="text-gray-300 text-sm mb-4 leading-relaxed">
+          Ideal para negocios que buscan presencia sólida, autoridad y posicionamiento en Google.
+        </p>
+        
+        <div class="mb-5">
+          <span class="text-2xl font-bold text-white">Desde $400</span>
+        </div>
+        
+        <!-- Acordeón simple sin JavaScript -->
+        <details class="border-t border-white/15 pt-4">
+          <summary class="font-medium text-white cursor-pointer list-none group">
+            <span class="flex items-center justify-between">
+              <span class="text-blue-300">Ver lo que incluye</span>
+              <ChevronDown className="inline-block transition-transform duration-300 group-open:rotate-180 text-blue-400" size={18} />
+            </span>
+          </summary>
+          <ul class="mt-4 space-y-3 text-sm text-gray-300">
+            <li class="flex items-start gap-3">
+              <CircleCheck className="text-green-400 flex-shrink-0 mt-0.5" size={16} />
+              <span>Diseño UI/UX personalizado</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <CircleCheck className="text-green-400 flex-shrink-0 mt-0.5" size={16} />
+              <span>Estructura profesional de 3 a 5 páginas</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <CircleCheck className="text-green-400 flex-shrink-0 mt-0.5" size={16} />
+              <span>SEO optimizado por página</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <CircleCheck className="text-green-400 flex-shrink-0 mt-0.5" size={16} />
+              <span>Arquitectura web preparada para escalar</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <CircleCheck className="text-green-400 flex-shrink-0 mt-0.5" size={16} />
+              <span>Velocidad de carga 90+ Lighthouse</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <CircleCheck className="text-green-400 flex-shrink-0 mt-0.5" size={16} />
+              <span>Optimización para dispositivos móviles</span>
+            </li>
+          </ul>
+        </details>
+        
+        <a href="#contact" class="mt-6 block w-full text-center bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25">
+          Elegir este Plan
+        </a>
+      </article>
+
+      <!-- Card 2: Landing Page (Mobile) - ESTILO ESPECIAL -->
+      <article class="rounded-2xl border border-blue-500/40 bg-gradient-to-br from-blue-500/15 via-blue-500/10 to-transparent backdrop-blur-sm p-6 relative shadow-xl shadow-blue-500/20">
+        <div class="absolute -top-3 left-4 bg-gradient-to-br from-yellow-400 to-yellow-300 text-black text-xs font-bold px-4 py-1.5 rounded-full shadow-lg">
+          <Star size={12} className="inline mr-1" /> Más vendido
+        </div>
+        
+        <h3 class="text-xl font-bold mb-3 text-white">Landing Page Profesionales</h3>
+        <p class="text-gray-300 text-sm mb-4 leading-relaxed">
+          La opción más solicitada para campañas, ventas rápidas y servicios específicos.
+        </p>
+        
+        <div class="mb-5">
+          <span class="text-2xl font-bold text-white">Desde $250</span>
+        </div>
+        
+        <details class="border-t border-white/15 pt-4">
+          <summary class="font-medium text-white cursor-pointer list-none group">
+            <span class="flex items-center justify-between">
+              <span class="text-blue-300">Ver lo que incluye</span>
+              <ChevronDown className="inline-block transition-transform duration-300 group-open:rotate-180 text-blue-400" size={18} />
+            </span>
+          </summary>
+          <ul class="mt-4 space-y-3 text-sm text-gray-300">
+            <li class="flex items-start gap-3">
+              <CircleCheck className="text-green-400 flex-shrink-0 mt-0.5" size={16} />
+              <span>Diseño enfocado en conversión</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <CircleCheck className="text-green-400 flex-shrink-0 mt-0.5" size={16} />
+              <span>Landing optimizada (Hero + CTA)</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <CircleCheck className="text-green-400 flex-shrink-0 mt-0.5" size={16} />
+              <span>Carga rápida y adaptada a móviles</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <CircleCheck className="text-green-400 flex-shrink-0 mt-0.5" size={16} />
+              <span>Formulario o botón de WhatsApp</span>
+            </li>
+          </ul>
+        </details>
+        
+        <a href="#contact" class="mt-6 block w-full text-center bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-purple-500/25">
+          Quiero esta Landing
+        </a>
+      </article>
+
+      <!-- Cards pequeñas (Mobile: apiladas con mismo estilo) -->
+      <!-- Card 3: Web Catálogo -->
+      <article class="rounded-2xl border border-green-500/30 bg-gradient-to-br from-green-600/10 via-green-500/5 to-transparent backdrop-blur-sm p-6 shadow-lg shadow-green-500/10">
+        <h3 class="text-xl font-bold mb-3 text-white">Web Catálogo / Tienda</h3>
+        <p class="text-gray-300 text-sm mb-4 leading-relaxed">
+          Perfecto para mostrar múltiples servicios o productos.
+        </p>
+        <div class="mb-5">
+          <span class="text-2xl font-bold text-white">Desde $699</span>
+        </div>
+        <a href="#contact" class="mt-2 block w-full text-center bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold py-3 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-green-500/25">
+          Solicitar Cotización
+        </a>
+      </article>
+
+      <!-- Card 4: Mantenimiento Web -->
+      <article class="rounded-2xl border border-purple-500/30 bg-gradient-to-br from-purple-600/10 via-purple-500/5 to-transparent backdrop-blur-sm p-6 shadow-lg shadow-purple-500/10">
+        <h3 class="text-xl font-bold mb-3 text-white">Mantenimiento Web</h3>
+        <p class="text-gray-300 text-sm mb-4 leading-relaxed">
+          Mantenimiento, seguridad y optimización continua para tu sitio.
+        </p>
+        <div class="mb-5">
+          <span class="text-2xl font-bold text-white">Desde $25 / mes</span>
+        </div>
+        <a href="#contact" class="mt-2 block w-full text-center bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-semibold py-3 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/25">
+          Contratar Soporte
+        </a>
+      </article>
+
+      <!-- Card 5: Optimizaciones Web -->
+      <article class="rounded-2xl border border-amber-500/30 bg-gradient-to-br from-amber-600/10 via-amber-500/5 to-transparent backdrop-blur-sm p-6 shadow-lg shadow-amber-500/10">
+        <h3 class="text-xl font-bold mb-3 text-white">Optimizaciones Web</h3>
+        <p class="text-gray-300 text-sm mb-4 leading-relaxed">
+          Mejora continua para velocidad, SEO, conversión y rendimiento general.
+        </p>
+        <div class="mb-5">
+          <span class="text-2xl font-bold text-white">Desde $49.99</span>
+        </div>
+        <a href="#contact" class="mt-2 block w-full text-center bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold py-3 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/25">
+          Optimizar mi Sitio
+        </a>
+      </article>
+    </div>
+
+    <!-- NOTA HOSTING MOBILE -->
+    <div class="mt-8 p-4 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-xl border border-blue-500/20">
+      <p class="text-sm text-gray-300 text-center">
+        <span class="text-blue-400 font-semibold">Incluye:</span> {hostingNote}
+      </p>
+    </div>
+  </section>
+
+  <!-- =========================== -->
+  <!--    PLANES / GRID - DESKTOP  -->
+  <!-- =========================== -->
+  <!-- VERSIÓN DESKTOP: Con ServiceCardShine y animaciones -->
+  <section id="web-design-desktop" class="hidden md:block">
     <div
       class="grid grid-cols-1 gap-6
         md:grid-cols-2 md:gap-6
@@ -144,9 +326,32 @@ const hostingNote =
       </div>
     </div>
 
-    <!-- NOTA HOSTING -->
-    <p class="mt-6 text-sm text-gray-400 text-center">
-      {hostingNote}
-    </p>
+    <!-- NOTA HOSTING DESKTOP -->
+    <div class="mt-8 text-center">
+      <p class="text-sm text-gray-400 inline-flex items-center gap-2 bg-white/5 backdrop-blur-sm px-4 py-3 rounded-xl border border-blue-500/20">
+        <span class="text-blue-400 font-semibold">Incluye:</span> {hostingNote}
+      </p>
+    </div>
   </section>
 </section>
+
+<style>
+  /* Animación CSS nativa para el acordeón (mejor que JS) */
+  details[open] summary svg {
+    transform: rotate(180deg);
+  }
+  details summary {
+    transition: all 0.3s ease;
+  }
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+  
+  /* Mejoras en hover para botones (solo en desktop) */
+  @media (min-width: 768px) {
+    .mobile-card button,
+    .mobile-card a {
+      transition: all 0.3s ease;
+    }
+  }
+</style>
