@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Navbar from "../components/Navbar.astro";
 import ScrollHandler from "@/components/ScrollHandler.astro";
+import GoogleAnalytics from "../components/GoogleAnalytics.astro";
 const { title } = Astro.props;
 ---
 
@@ -10,6 +11,7 @@ const { title } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title || "DALC Studios — Diseño Web en El Salvador"}</title>
+    <GoogleAnalytics />
   </head>
 
   <body class="min-h-screen text-white" style="background: var(--background);">
