@@ -3,18 +3,20 @@ const measurementId = "G-X3765J7W54";
 ---
 
 {import.meta.env.PROD && (
-  <script is:inline>
-    const gaScript = document.createElement('script');
-    gaScript.async = true;
-    gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=${measurementId}';
-    
-    gaScript.onload = function() {
+  <>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
+    ></script>
+
+    <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', '${measurementId}');
-    };
-    
-    document.head.appendChild(gaScript);
-  </script>
+      gtag('config', '{measurementId}', {
+        anonymize_ip: true,
+      });
+    </script>
+  </>
 )}
