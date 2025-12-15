@@ -4,14 +4,17 @@ const measurementId = "G-X3765J7W54";
 
 {import.meta.env.PROD && (
   <script is:inline>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){window.dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', '${measurementId}');
-    
     const gaScript = document.createElement('script');
     gaScript.async = true;
     gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=${measurementId}';
+    
+    gaScript.onload = function() {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '${measurementId}');
+    };
+    
     document.head.appendChild(gaScript);
   </script>
 )}
