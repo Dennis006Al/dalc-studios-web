@@ -13,11 +13,13 @@ const measurementId = "G-X3765J7W54";
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+
+      gtag('set', 'debug_mode', true);
+
       gtag('js', new Date());
       gtag('config', measurementId, {
         anonymize_ip: true,
-        send_page_view: true,
-        debug_mode: true
+        send_page_view: true
       });
     </script>
   </>
