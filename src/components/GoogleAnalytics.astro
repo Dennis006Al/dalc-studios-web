@@ -4,6 +4,7 @@ const measurementId = "G-GRTGL012X1";
 
 {import.meta.env.PROD && (
   <>
+    <!-- Google tag -->
     <script
       async
       src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
@@ -11,13 +12,13 @@ const measurementId = "G-GRTGL012X1";
 
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
 
-      gtag('js', new Date());
-      gtag('config', measurementId, {
-        anonymize_ip: true,
-        send_page_view: true
-      });
+      window.gtag = function (...args) {
+        window.dataLayer.push(args);
+      };
+
+      window.gtag('js', new Date());
+      window.gtag('config', '{measurementId}');
     </script>
   </>
 )}
