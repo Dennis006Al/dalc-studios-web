@@ -1,13 +1,9 @@
----
-const measurementId = "G-GRTGL012X1";
----
-
 {import.meta.env.PROD && (
   <>
     <!-- Google tag -->
     <script
       async
-      src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
+      src={'https://www.googletagmanager.com/gtag/js?id=G-GRTGL012X1'}
     ></script>
 
     <script is:inline>
@@ -18,7 +14,7 @@ const measurementId = "G-GRTGL012X1";
       };
 
       window.gtag('js', new Date());
-      window.gtag('config', '{measurementId}');
+      window.gtag('config', 'G-GRTGL012X1');
     </script>
   </>
 )}
