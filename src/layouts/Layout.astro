@@ -22,7 +22,7 @@ const { title } = Astro.props;
     <!-- WhatsApp Flotante con notificación -->
     <a
       href="https://wa.me/50379958152"
-      id="whatsappBtn"
+      id="whatsapp-btn"
       class="fixed z-50 flex items-center justify-center p-2 text-white transition-all duration-300 bg-green-500 rounded-full shadow-lg hover:bg-green-600 sm:bottom-6 sm:right-6 sm:p-3 sm:w-14 sm:h-14 bottom-4 right-4 w-12 h-12"
       target="_blank"
       rel="noopener noreferrer"
@@ -68,9 +68,11 @@ const { title } = Astro.props;
     </a>
 
     <!-- Animación de notificación WhatsApp -->
-    <script>
+    <script type="module">
+      import { trackEvent } from "@/utils/analytics";
+
       document.addEventListener("DOMContentLoaded", () => {
-        const whatsappBtn = document.getElementById("whatsappBtn");
+        const whatsappBtn = document.getElementById("whatsapp-btn");
         const notification = document.getElementById("notificationBadge");
 
         if (!whatsappBtn || !notification) return;
@@ -83,21 +85,14 @@ const { title } = Astro.props;
             notification.classList.add("hidden");
             whatsappBtn.classList.remove("animate-bounce");
 
-            const nextShowTime = Math.floor(Math.random() * 120000) + 120000;
-            setTimeout(showNotification, nextShowTime);
+            const nextShow = Math.random() * 120000 + 120000;
+            setTimeout(showNotification, nextShow);
           }, 15000);
         };
 
         setTimeout(showNotification, 30000);
-      });
-    </script>
-    <script type="module">
-      import { trackEvent } from "@/utils/analytics";
 
-      document.addEventListener("DOMContentLoaded", () => {
-        const whatsappBtn = document.getElementById("whatsappBtn");
-
-        whatsappBtn?.addEventListener("click", () => {
+        whatsappBtn.addEventListener("click", () => {
           trackEvent("click_whatsapp", {
             platform: "whatsapp",
             location: "floating_button",

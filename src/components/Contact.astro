@@ -178,9 +178,9 @@ const serviceOptions = [
 
           <div class="flex items-center gap-3">
             <a
+              id="linkedin-btn"
               href="https://www.linkedin.com/in/dennis-landaverde-873a07284"
               target="_blank"
-              data-social="linkedin"
               rel="noopener noreferrer"
               aria-label="LinkedIn - Perfil profesional"
               class="flex h-12 w-12 items-center justify-center rounded-xl border border-blue-500/20 bg-blue-500/10 backdrop-blur transition-all hover:bg-blue-500/20 hover:scale-110 hover:shadow-lg hover:shadow-blue-500/25"
@@ -189,9 +189,9 @@ const serviceOptions = [
             </a>
 
             <a
+              id="instagram-btn"
               href="https://www.instagram.com/dalcstudios.web/"
               target="_blank"
-              data-social="instagram"
               rel="noopener noreferrer"
               aria-label="Instagram - Proyectos recientes"
               class="flex h-12 w-12 items-center justify-center rounded-xl border border-pink-500/20 bg-pink-500/10 backdrop-blur transition-all hover:bg-pink-500/20 hover:scale-110 hover:shadow-lg hover:shadow-pink-500/25"
@@ -200,9 +200,9 @@ const serviceOptions = [
             </a>
 
             <a
+              id="facebook-btn"
               href="https://www.facebook.com/profile.php?id=61585140122025"
               target="_blank"
-              data-social="facebook"
               rel="noopener noreferrer"
               aria-label="Facebook - Página de servicios"
               class="flex h-12 w-12 items-center justify-center rounded-xl border border-blue-400/20 bg-blue-400/10 backdrop-blur transition-all hover:bg-blue-400/20 hover:scale-110 hover:shadow-lg hover:shadow-blue-400/25"
@@ -217,7 +217,7 @@ const serviceOptions = [
       </div>
     </article>
 
-    <!-- FORM  -->
+    <!-- FORM - OPTIMIZADO -->
     <form
       id="contact-form"
       action={`https://formsubmit.co/${contactEmail}`}
@@ -405,7 +405,7 @@ const serviceOptions = [
     </form>
   </div>
 
-  <!-- TOAST -->
+  <!-- TOAST MEJORADO -->
   <div
     id="toast"
     class="fixed bottom-6 right-6 z-50 hidden rounded-xl border bg-black/90 px-5 py-4 text-sm backdrop-blur-md shadow-xl max-w-sm"
@@ -414,45 +414,57 @@ const serviceOptions = [
   >
   </div>
 
-  <!-- SCRIPT -->
+  <!-- SCRIPT MEJORADO -->
   <script type="module">
-    import { trackEvent } from "@/utils/analytics";
-
     const form = document.getElementById("contact-form");
     const toast = document.getElementById("toast");
     const select = document.getElementById("service");
     const submitBtn = document.getElementById("submit-btn");
+    const track = (event, params = {}) => {
+      if (typeof window.gtag === "function") {
+        window.gtag("event", event, params);
+      }
+    };
 
     function showToast(message, success = true) {
       toast.innerHTML = `
-      <div class="flex items-start gap-3">
-        ${
-          success
-            ? `
-        <div class="flex-shrink-0">
-          <div class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-400"><polyline points="20 6 9 17 4 12"/></svg>
+        <div class="flex items-start gap-3">
+          ${
+            success
+              ? `
+          <div class="flex-shrink-0">
+            <div class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-400"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+          </div>`
+              : `
+          <div class="flex-shrink-0">
+            <div class="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-400"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </div>
+          </div>`
+          }
+          <div>
+            <p class="font-medium">${success ? "¡Mensaje enviado!" : "Error"}</p>
+            <p class="text-gray-300 text-sm mt-1">${message}</p>
           </div>
-        </div>`
-            : `
-        <div class="flex-shrink-0">
-          <div class="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-400"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-          </div>
-        </div>`
-        }
-        <div>
-          <p class="font-medium">${success ? "¡Mensaje enviado!" : "Error"}</p>
-          <p class="text-gray-300 text-sm mt-1">${message}</p>
         </div>
-      </div>
-    `;
+      `;
 
       toast.className = success
         ? "fixed bottom-6 right-6 z-50 hidden rounded-xl border border-green-500/30 bg-black/90 px-5 py-4 text-sm backdrop-blur-md shadow-xl max-w-sm"
         : "fixed bottom-6 right-6 z-50 hidden rounded-xl border border-red-500/30 bg-black/90 px-5 py-4 text-sm backdrop-blur-md shadow-xl max-w-sm";
 
       toast.classList.remove("hidden");
+
+      // Sonido de éxito (opcional)
+      if (success && typeof window !== "undefined") {
+        const audio = new Audio(
+          "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAZGF0YQQ="
+        );
+        audio.volume = 0.3;
+        audio.play().catch(() => {});
+      }
 
       setTimeout(() => {
         toast.classList.add("hidden");
@@ -461,10 +473,14 @@ const serviceOptions = [
 
     function scrollToTop(delay = 600) {
       setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
       }, delay);
     }
 
+    // Event listener para selección de servicio desde otras secciones
     window.addEventListener("select-service", (e) => {
       const serviceName = e.detail?.service;
       if (!serviceName || !select) return;
@@ -479,10 +495,18 @@ const serviceOptions = [
         select.appendChild(opt);
       }
 
-      select.value = serviceName;
+      if (serviceName.trim() !== "") {
+        select.value = serviceName;
+      }
 
+      // Scroll suave al formulario
       setTimeout(() => {
-        form.scrollIntoView({ behavior: "smooth", block: "center" });
+        form.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+
+        // Efecto visual de destacado
         form.classList.add("ring-2", "ring-blue-400", "ring-opacity-50");
         setTimeout(() => {
           form.classList.remove("ring-2", "ring-blue-400", "ring-opacity-50");
@@ -490,6 +514,7 @@ const serviceOptions = [
       }, 100);
     });
 
+    // Validación en tiempo real
     form.addEventListener("input", (e) => {
       if (e.target.required && e.target.value.trim() !== "") {
         e.target.classList.add("border-blue-500/50");
@@ -497,11 +522,41 @@ const serviceOptions = [
       }
     });
 
+    /* ===============================
+     TRACKING CLICK EVENTS
+  =============================== */
+
+    document.getElementById("whatsapp-btn")?.addEventListener("click", () => {
+      track("click_whatsapp", {
+        event_category: "engagement",
+        event_label: "WhatsApp Button",
+      });
+    });
+
+    document.getElementById("linkedin-btn")?.addEventListener("click", () => {
+      track("click_linkedin", {
+        event_category: "social",
+        event_label: "LinkedIn Profile",
+      });
+    });
+
+    document.getElementById("instagram-btn")?.addEventListener("click", () => {
+      track("click_instagram", {
+        event_category: "social",
+        event_label: "Instagram Profile",
+      });
+    });
+
+    document.getElementById("facebook-btn")?.addEventListener("click", () => {
+      track("click_facebook", {
+        event_category: "social",
+        event_label: "Facebook Page",
+      });
+    });
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      e.stopImmediatePropagation();
-      e.stopPropagation();
-      
+
+      // Validación básica
       const requiredFields = form.querySelectorAll("[required]");
       let isValid = true;
 
@@ -517,33 +572,36 @@ const serviceOptions = [
         return;
       }
 
+      // Animación de carga
       submitBtn.disabled = true;
       const originalText = submitBtn.innerHTML;
       submitBtn.innerHTML = `
-      <span class="inline-flex items-center justify-center gap-2">
-        <div class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-        Enviando...
-      </span>
-    `;
+        <span class="inline-flex items-center justify-center gap-2">
+          <div class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+          Enviando...
+        </span>
+      `;
 
       try {
         const res = await fetch(form.action, {
           method: "POST",
           body: new FormData(form),
-          headers: { Accept: "application/json" },
+          headers: {
+            Accept: "application/json",
+          },
         });
 
         if (res.ok) {
           showToast(
-            "¡Perfecto! Te contactaré en menos de 24 horas. Revisa tu correo o WhatsApp."
+            "¡Perfecto! Te contactaré en menos de 24 horas. Revisa tu correo."
           );
           scrollToTop();
           form.reset();
 
-          trackEvent("generate_lead", {
-            method: "contact_form",
-            service: form.querySelector("#service")?.value || "unknown",
-            page: window.location.pathname,
+          /* GA4 LEAD EVENT */
+          track("generate_lead", {
+            event_category: "conversion",
+            event_label: "Contact Form",
           });
         } else {
           showToast(
@@ -563,25 +621,14 @@ const serviceOptions = [
       }
     });
 
+    // Focus en primer campo al cargar
     window.addEventListener("load", () => {
       const firstInput = form.querySelector("input, textarea, select");
       if (firstInput) {
-        setTimeout(() => firstInput.focus(), 500);
+        setTimeout(() => {
+          firstInput.focus();
+        }, 500);
       }
-    });
-  </script>
-
-  <script type="module">
-    import { trackEvent } from "@/utils/analytics";
-
-    document.querySelectorAll("[data-social]").forEach((el) => {
-      el.addEventListener("click", () => {
-        trackEvent("click_social", {
-          platform: el.dataset.social,
-          location: "contact_section",
-          page: window.location.pathname,
-        });
-      });
     });
   </script>
 </section>
