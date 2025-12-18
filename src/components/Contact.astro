@@ -405,7 +405,7 @@ const serviceOptions = [
     </form>
   </div>
 
-  <!-- TOAST MEJORADO -->
+  <!-- TOAST -->
   <div
     id="toast"
     class="fixed bottom-6 right-6 z-50 hidden rounded-xl border bg-black/90 px-5 py-4 text-sm backdrop-blur-md shadow-xl max-w-sm"
@@ -414,8 +414,10 @@ const serviceOptions = [
   >
   </div>
 
-  <!-- SCRIPT MEJORADO -->
+  <!-- SCRIPT -->
   <script type="module">
+    import { trackEvent } from "@/utils/analytics";
+
     const form = document.getElementById("contact-form");
     const toast = document.getElementById("toast");
     const select = document.getElementById("service");
@@ -423,28 +425,28 @@ const serviceOptions = [
 
     function showToast(message, success = true) {
       toast.innerHTML = `
-        <div class="flex items-start gap-3">
-          ${
-            success
-              ? `
-          <div class="flex-shrink-0">
-            <div class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-400"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-          </div>`
-              : `
-          <div class="flex-shrink-0">
-            <div class="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-400"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-            </div>
-          </div>`
-          }
-          <div>
-            <p class="font-medium">${success ? "¡Mensaje enviado!" : "Error"}</p>
-            <p class="text-gray-300 text-sm mt-1">${message}</p>
+      <div class="flex items-start gap-3">
+        ${
+          success
+            ? `
+        <div class="flex-shrink-0">
+          <div class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-400"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
+        </div>`
+            : `
+        <div class="flex-shrink-0">
+          <div class="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-400"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </div>
+        </div>`
+        }
+        <div>
+          <p class="font-medium">${success ? "¡Mensaje enviado!" : "Error"}</p>
+          <p class="text-gray-300 text-sm mt-1">${message}</p>
         </div>
-      `;
+      </div>
+    `;
 
       toast.className = success
         ? "fixed bottom-6 right-6 z-50 hidden rounded-xl border border-green-500/30 bg-black/90 px-5 py-4 text-sm backdrop-blur-md shadow-xl max-w-sm"
@@ -459,14 +461,10 @@ const serviceOptions = [
 
     function scrollToTop(delay = 600) {
       setTimeout(() => {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }, delay);
     }
 
-    // Event listener para selección de servicio desde otras secciones
     window.addEventListener("select-service", (e) => {
       const serviceName = e.detail?.service;
       if (!serviceName || !select) return;
@@ -481,18 +479,10 @@ const serviceOptions = [
         select.appendChild(opt);
       }
 
-      if (serviceName.trim() !== "") {
-        select.value = serviceName;
-      }
+      select.value = serviceName;
 
-      // Scroll suave al formulario
       setTimeout(() => {
-        form.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        });
-
-        // Efecto visual de destacado
+        form.scrollIntoView({ behavior: "smooth", block: "center" });
         form.classList.add("ring-2", "ring-blue-400", "ring-opacity-50");
         setTimeout(() => {
           form.classList.remove("ring-2", "ring-blue-400", "ring-opacity-50");
@@ -500,7 +490,6 @@ const serviceOptions = [
       }, 100);
     });
 
-    // Validación en tiempo real
     form.addEventListener("input", (e) => {
       if (e.target.required && e.target.value.trim() !== "") {
         e.target.classList.add("border-blue-500/50");
@@ -511,7 +500,6 @@ const serviceOptions = [
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      // Validación básica
       const requiredFields = form.querySelectorAll("[required]");
       let isValid = true;
 
@@ -527,28 +515,25 @@ const serviceOptions = [
         return;
       }
 
-      // Animación de carga
       submitBtn.disabled = true;
       const originalText = submitBtn.innerHTML;
       submitBtn.innerHTML = `
-        <span class="inline-flex items-center justify-center gap-2">
-          <div class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-          Enviando...
-        </span>
-      `;
+      <span class="inline-flex items-center justify-center gap-2">
+        <div class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+        Enviando...
+      </span>
+    `;
 
       try {
         const res = await fetch(form.action, {
           method: "POST",
           body: new FormData(form),
-          headers: {
-            Accept: "application/json",
-          },
+          headers: { Accept: "application/json" },
         });
 
         if (res.ok) {
           showToast(
-            "¡Perfecto! Te contactaré en menos de 24 horas. Revisa tu correo."
+            "¡Perfecto! Te contactaré en menos de 24 horas. Revisa tu correo o WhatsApp."
           );
           scrollToTop();
           form.reset();
@@ -576,16 +561,14 @@ const serviceOptions = [
       }
     });
 
-    // Focus en primer campo al cargar
     window.addEventListener("load", () => {
       const firstInput = form.querySelector("input, textarea, select");
       if (firstInput) {
-        setTimeout(() => {
-          firstInput.focus();
-        }, 500);
+        setTimeout(() => firstInput.focus(), 500);
       }
     });
   </script>
+
   <script type="module">
     import { trackEvent } from "@/utils/analytics";
 
