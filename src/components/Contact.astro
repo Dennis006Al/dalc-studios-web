@@ -500,6 +500,7 @@ const serviceOptions = [
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       e.stopImmediatePropagation();
+      e.stopPropagation();
       
       const requiredFields = form.querySelectorAll("[required]");
       let isValid = true;
