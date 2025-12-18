@@ -180,6 +180,7 @@ const serviceOptions = [
             <a
               href="https://www.linkedin.com/in/dennis-landaverde-873a07284"
               target="_blank"
+              data-social="linkedin"
               rel="noopener noreferrer"
               aria-label="LinkedIn - Perfil profesional"
               class="flex h-12 w-12 items-center justify-center rounded-xl border border-blue-500/20 bg-blue-500/10 backdrop-blur transition-all hover:bg-blue-500/20 hover:scale-110 hover:shadow-lg hover:shadow-blue-500/25"
@@ -190,6 +191,7 @@ const serviceOptions = [
             <a
               href="https://www.instagram.com/dalcstudios.web/"
               target="_blank"
+              data-social="instagram"
               rel="noopener noreferrer"
               aria-label="Instagram - Proyectos recientes"
               class="flex h-12 w-12 items-center justify-center rounded-xl border border-pink-500/20 bg-pink-500/10 backdrop-blur transition-all hover:bg-pink-500/20 hover:scale-110 hover:shadow-lg hover:shadow-pink-500/25"
@@ -200,6 +202,7 @@ const serviceOptions = [
             <a
               href="https://www.facebook.com/profile.php?id=61585140122025"
               target="_blank"
+              data-social="facebook"
               rel="noopener noreferrer"
               aria-label="Facebook - Página de servicios"
               class="flex h-12 w-12 items-center justify-center rounded-xl border border-blue-400/20 bg-blue-400/10 backdrop-blur transition-all hover:bg-blue-400/20 hover:scale-110 hover:shadow-lg hover:shadow-blue-400/25"
@@ -449,15 +452,6 @@ const serviceOptions = [
 
       toast.classList.remove("hidden");
 
-      // Sonido de éxito (opcional)
-      if (success && typeof window !== "undefined") {
-        const audio = new Audio(
-          "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAZGF0YQQ="
-        );
-        audio.volume = 0.3;
-        audio.play().catch(() => {});
-      }
-
       setTimeout(() => {
         toast.classList.add("hidden");
       }, 5000);
@@ -559,13 +553,11 @@ const serviceOptions = [
           scrollToTop();
           form.reset();
 
-          // Evento para Google Analytics (si lo tienes)
-          if (typeof gtag !== "undefined") {
-            gtag("event", "form_submit", {
-              event_category: "Contact",
-              event_label: "Contact Form",
-            });
-          }
+          trackEvent("generate_lead", {
+            method: "contact_form",
+            service: form.querySelector("#service")?.value || "unknown",
+            page: window.location.pathname,
+          });
         } else {
           showToast(
             "Hubo un error al enviar. Por favor, inténtalo de nuevo o contáctame directamente por email.",
@@ -592,6 +584,19 @@ const serviceOptions = [
           firstInput.focus();
         }, 500);
       }
+    });
+  </script>
+  <script type="module">
+    import { trackEvent } from "@/utils/analytics";
+
+    document.querySelectorAll("[data-social]").forEach((el) => {
+      el.addEventListener("click", () => {
+        trackEvent("click_social", {
+          platform: el.dataset.social,
+          location: "contact_section",
+          page: window.location.pathname,
+        });
+      });
     });
   </script>
 </section>
