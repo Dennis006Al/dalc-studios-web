@@ -1,6 +1,11 @@
 /// <reference types="astro/client" />
 
-interface Window {
-  dataLayer: any[];
-  gtag: (...args: any[]) => void;
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+
+  function gtag(...args: any[]): void;
 }
+
+export {};

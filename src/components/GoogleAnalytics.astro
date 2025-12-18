@@ -1,20 +1,16 @@
 {import.meta.env.PROD && (
   <>
-    <!-- Google tag -->
     <script
       async
-      src={'https://www.googletagmanager.com/gtag/js?id=G-GRTGL012X1'}
+      src="https://www.googletagmanager.com/gtag/js?id=G-GRTGL012X1"
     ></script>
 
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
 
-      window.gtag = function (...args) {
-        window.dataLayer.push(args);
-      };
-
-      window.gtag('js', new Date());
-      window.gtag('config', 'G-GRTGL012X1');
+      gtag('js', new Date());
+      gtag('config', 'G-GRTGL012X1');
     </script>
   </>
 )}
